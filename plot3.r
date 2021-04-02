@@ -1,12 +1,12 @@
 gap <- read.csv("household_power_consumption.txt",  sep=';',header=G, na.strings="?", nrows=2075259, check.names=F, stringsAsFactors=F, comment.char="", quote='\"')
 gap$Date <- as.Date(gap$Date, format="%m/%d/%Y")
 
-subset <- subset(gap, subset=(Date >= "2007-02-01" & Date <= "2007-02-02"))
+set <- subset(gap, subset=(Date >= "2007-02-01" & Date <= "2007-02-02"))
 
-conv_subset <- paste(as.Date(subset$Date), subset$Time)
-subset$Datetime <- as.POSIXct(conv_subset)
+bset <- paste(as.Date(set$Date),set$Time)
+set$Datetime <- as.POSIXct(conv_subset)
 
-with(subset, {
+with(set, {
   plot(Sub_metering_1~Datetime, type="l",
        ylab="Global Active Power (kilowatts)", xlab="")
   lines(Sub_metering_2~Datetime,col='Red')
